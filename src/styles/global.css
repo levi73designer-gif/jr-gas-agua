@@ -362,16 +362,12 @@ img {
   max-height: 20rem;
 }
 
-.faq-item[data_open="true"] .faq-chevron {
+.faq-item[data-open="true"] .faq-chevron {
   transform: rotate(180deg);
 }
 
 .faq-chevron {
   transition: transform var(--duration-fast) var(--ease-out);
-}
-
-.faq-item[data_open="true"] .faq-chevron {
-  transform: rotate(180deg);
 }
 
 /* ============================================
@@ -395,7 +391,7 @@ img {
   padding: var(--space-8) var(--space-5);
 }
 
-.mobile-menu[data_open="true"] {
+.mobile-menu[data-open="true"] {
   transform: translateX(0);
 }
 

@@ -46,7 +46,7 @@ const faqs = [
       {faqs.map((faq, i) => (
         <div
           class="faq-item reveal rounded-md"
-          data_open={i === 0 ? 'true' : 'false'}
+          data-open={i === 0 ? 'true' : 'false'}
           style={`background-color: var(--color-surface); border: 1px solid var(--color-border); transition: background-color var(--duration-fast) var(--ease-out);`}
         >
           <button
@@ -98,11 +98,11 @@ const faqs = [
     const chevron = item.querySelector('.faq-chevron');
 
     button?.addEventListener('click', () => {
-      const isOpen = item.getAttribute('data_open') === 'true';
+      const isOpen = item.getAttribute('data-open') === 'true';
 
       // Close all items
       faqItems.forEach((otherItem) => {
-        otherItem.setAttribute('data_open', 'false');
+        otherItem.setAttribute('data-open', 'false');
         const otherBtn = otherItem.querySelector('button');
         const otherContent = otherItem.querySelector('.faq-content') as HTMLElement | null;
         const otherChevron = otherItem.querySelector('.faq-chevron') as HTMLElement | null;
@@ -115,7 +115,7 @@ const faqs = [
 
       // Toggle current
       if (!isOpen) {
-        item.setAttribute('data_open', 'true');
+        item.setAttribute('data-open', 'true');
         button.setAttribute('aria-expanded', 'true');
         if (content) {
           content.style.padding = '0 var(--space-5) var(--space-5)';

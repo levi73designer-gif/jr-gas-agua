@@ -74,7 +74,7 @@ const navLinks = [
   id="mobile-menu"
   class="mobile-menu md:hidden"
   aria-label="Navegação mobile"
-  data_open="false"
+  data-open="false"
 >
   <button
     id="mobile-menu-close"
@@ -110,15 +110,15 @@ const navLinks = [
   const header = document.getElementById('main-header');
 
   function toggleMenu() {
-    const isOpen = mobileMenu?.getAttribute('data_open') === 'true';
+    const isOpen = mobileMenu?.getAttribute('data-open') === 'true';
     if (isOpen) {
-      mobileMenu?.setAttribute('data_open', 'false');
+      mobileMenu?.setAttribute('data-open', 'false');
       menuBtn?.setAttribute('aria-expanded', 'false');
       iconOpen?.classList.remove('hidden');
       iconClose?.classList.add('hidden');
       document.body.style.overflow = '';
     } else {
-      mobileMenu?.setAttribute('data_open', 'true');
+      mobileMenu?.setAttribute('data-open', 'true');
       menuBtn?.setAttribute('aria-expanded', 'true');
       iconOpen?.classList.add('hidden');
       iconClose?.classList.remove('hidden');
@@ -131,7 +131,7 @@ const navLinks = [
   // Close button inside mobile menu
   const menuCloseBtn = document.getElementById('mobile-menu-close');
   menuCloseBtn?.addEventListener('click', () => {
-    if (mobileMenu?.getAttribute('data_open') === 'true') {
+    if (mobileMenu?.getAttribute('data-open') === 'true') {
       toggleMenu();
     }
   });
@@ -139,7 +139,7 @@ const navLinks = [
   // Close menu on link click
   mobileMenu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      if (mobileMenu.getAttribute('data_open') === 'true') {
+      if (mobileMenu.getAttribute('data-open') === 'true') {
         toggleMenu();
       }
     });
