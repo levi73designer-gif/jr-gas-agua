@@ -76,6 +76,13 @@ const navLinks = [
   aria-label="Navegação mobile"
   data_open="false"
 >
+  <button
+    id="mobile-menu-close"
+    class="absolute top-5 right-5 flex items-center justify-center min-h-[44px] min-w-[44px]"
+    aria-label="Fechar menu"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
   <a href="/" class="mobile-nav-link" style="color: rgba(255,255,255,0.8);">Início</a>
   <a href="/produtos" class="mobile-nav-link" style="color: rgba(255,255,255,0.8);">Produtos</a>
   <a href="/sobre" class="mobile-nav-link" style="color: rgba(255,255,255,0.8);">Sobre</a>
@@ -120,6 +127,14 @@ const navLinks = [
   }
 
   menuBtn?.addEventListener('click', toggleMenu);
+
+  // Close button inside mobile menu
+  const menuCloseBtn = document.getElementById('mobile-menu-close');
+  menuCloseBtn?.addEventListener('click', () => {
+    if (mobileMenu?.getAttribute('data_open') === 'true') {
+      toggleMenu();
+    }
+  });
 
   // Close menu on link click
   mobileMenu?.querySelectorAll('a').forEach((link) => {
