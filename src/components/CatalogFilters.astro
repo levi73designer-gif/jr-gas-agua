@@ -1,0 +1,136 @@
+---
+---
+
+<div class="flex flex-wrap items-center gap-3 mb-6 md:mb-8" role="toolbar" aria-label="Filtrar produtos por categoria">
+  <button
+    type="button"
+    class="catalog-filter active min-h-[44px] px-5 py-3 rounded-full font-semibold uppercase tracking-wider text-sm transition-all duration-200 cursor-pointer"
+    data-filter="todos"
+    style="background-color: var(--color-surface-hover); border: 1px solid var(--color-text); color: var(--color-text);"
+  >
+    Todos
+  </button>
+  <button
+    type="button"
+    class="catalog-filter min-h-[44px] px-5 py-3 rounded-full font-semibold uppercase tracking-wider text-sm transition-all duration-200 cursor-pointer"
+    data-filter="gas"
+    style="background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-secondary);"
+  >
+    Gás
+  </button>
+  <button
+    type="button"
+    class="catalog-filter min-h-[44px] px-5 py-3 rounded-full font-semibold uppercase tracking-wider text-sm transition-all duration-200 cursor-pointer"
+    data-filter="agua"
+    style="background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-secondary);"
+  >
+    Água
+  </button>
+  <button
+    type="button"
+    class="catalog-filter min-h-[44px] px-5 py-3 rounded-full font-semibold uppercase tracking-wider text-sm transition-all duration-200 cursor-pointer"
+    data-filter="acessorio"
+    style="background-color: transparent; border: 1px solid var(--color-border); color: var(--color-text-secondary);"
+  >
+    Acessórios
+  </button>
+
+  <span id="product-count" class="ml-auto text-xs uppercase tracking-widest" style="color: var(--color-text-muted);">
+    13 produtos
+  </span>
+</div>
+
+<script>
+  const filterButtons = document.querySelectorAll('.catalog-filter');
+  const cards = document.querySelectorAll('[data-category]');
+  const countEl = document.getElementById('product-count');
+
+  const filterStyles: Record<string, { bg: string; border: string; color: string }> = {
+    todos: { bg: 'var(--color-surface-hover)', border: 'var(--color-text)', color: 'var(--color-text)' },
+    gas: { bg: 'var(--color-gas-900)', border: 'var(--color-gas)', color: 'var(--color-gas-400)' },
+    agua: { bg: 'var(--color-water-900)', border: 'var(--color-water)', color: 'var(--color-water-400)' },
+    acessorio: { bg: 'var(--color-surface-hover)', border: 'var(--color-text-muted)', color: 'var(--color-text)' },
+  };
+
+  const idleStyle = { bg: 'transparent', border: 'var(--color-border)', color: 'var(--color-text-secondary)' };
+  const hoverStyle = { bg: 'var(--color-surface)', border: 'var(--color-border-strong)', color: 'var(--color-text)' };
+
+  function applyFilter(filter: string) {
+    // Update button styles
+    filterButtons.forEach((btn) => {
+      const btnFilter = btn.getAttribute('data-filter') || 'todos';
+      const el = btn as HTMLElement;
+      if (btnFilter === filter) {
+        const style = filterStyles[btnFilter];
+        el.style.backgroundColor = style.bg;
+        el.style.borderColor = style.border;
+        el.style.color = style.color;
+        el.classList.add('active');
+      } else {
+        el.style.backgroundColor = idleStyle.bg;
+        el.style.borderColor = idleStyle.border;
+        el.style.color = idleStyle.color;
+        el.classList.remove('active');
+      }
+    });
+
+    // Filter cards
+    let visibleCount = 0;
+    cards.forEach((card) => {
+      const el = card as HTMLElement;
+      const category = el.getAttribute('data-category');
+      if (filter === 'todos' || category === filter) {
+        el.style.opacity = '1';
+        el.style.transform = 'scale(1)';
+        el.style.pointerEvents = 'auto';
+        el.style.position = 'relative';
+        el.style.width = '';
+        el.style.height = '';
+        el.style.overflow = '';
+        el.style.padding = '';
+        el.style.margin = '';
+        el.style.border = '';
+        el.classList.add('product-card-visible');
+        el.classList.remove('product-card-filtered');
+        visibleCount++;
+      } else {
+        el.style.opacity = '0';
+        el.style.transform = 'scale(0.95)';
+        el.style.pointerEvents = 'none';
+        el.classList.remove('product-card-visible');
+        el.classList.add('product-card-filtered');
+      }
+    });
+
+    if (countEl) {
+      const label = filter === 'todos' ? 'produtos' : `produtos de ${filter === 'gas' ? 'Gás' : filter === 'agua' ? 'Água' : 'Acessórios'}`;
+      countEl.textContent = `${visibleCount} ${label}`;
+    }
+  }
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter') || 'todos';
+      applyFilter(filter);
+    });
+
+    // Hover effects for inactive buttons
+    btn.addEventListener('mouseenter', () => {
+      if (!btn.classList.contains('active')) {
+        const el = btn as HTMLElement;
+        el.style.backgroundColor = hoverStyle.bg;
+        el.style.borderColor = hoverStyle.border;
+        el.style.color = hoverStyle.color;
+      }
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      if (!btn.classList.contains('active')) {
+        const el = btn as HTMLElement;
+        el.style.backgroundColor = idleStyle.bg;
+        el.style.borderColor = idleStyle.border;
+        el.style.color = idleStyle.color;
+      }
+    });
+  });
+</script>

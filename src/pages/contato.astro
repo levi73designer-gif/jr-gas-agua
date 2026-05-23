@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactSection from '../components/ContactSection.astro';
+
+const WA_NUMBER = '5519996896714';
+const WA_MESSAGE = encodeURIComponent('Olá! Gostaria de fazer um pedido JR Gás e Água.');
+const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
+---
+
+<Layout title="Contato — JR Gás e Água" description="Entre em contato com a JR Gás e Água. WhatsApp, telefone, horários de atendimento e formas de pagamento.">
+  <Header slot="header" />
+
+  <!-- Contact Hero -->
+  <section class="section" style="background-color: var(--color-bg); padding-top: calc(var(--space-12) + 4.5rem);">
+    <div class="section__container">
+      <div class="reveal">
+        <div
+          class="mb-6"
+          style="width: 80px; height: 4px; background: linear-gradient(135deg, #C43A0A 0%, #3A4CC0 100%); border-radius: 2px;"
+          aria-hidden="true"
+        ></div>
+
+        <h1
+          class="font-black uppercase tracking-wider leading-none mb-4"
+          style="font-family: var(--font-display); font-size: clamp(1.75rem, 5vw, 3rem); color: var(--color-text);"
+        >
+          Contato
+        </h1>
+        <p
+          class="max-w-2xl"
+          style="font-family: var(--font-body); font-size: 1rem; font-weight: 400; color: var(--color-text-secondary); line-height: 1.625;"
+        >
+          Estamos prontos para atender você. Escolha o canal mais conveniente.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp CTA Highlight -->
+  <section class="section" style="background-color: var(--color-bg);">
+    <div class="section__container">
+      <div class="reveal rounded-lg p-8 md:p-12 text-center" style="background: linear-gradient(135deg, rgba(196,58,10,0.15) 0%, rgba(58,76,192,0.15) 100%); border: 1px solid var(--color-border);">
+        <div class="mx-auto mb-6" style="width: 64px; height: 64px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#25D366">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.85 1.787-1.164 2.336-.85.547.294 1.874 1.228 2.16.997.297-.148 1.04-.577 1.2-.964.123-.387.084-.712.042-.772-.042-.06-.148-.099-.347-.223 zm-5.421 7.403h-.004a9.188 9.188 0 01-4.897-1.417l-.34-.203-3.541.93.946-3.46-.224-.357a9.19 9.19 0 01-1.41-4.908C2.665 7.04 6.89 2.816 12.051 2.816c2.448 0 4.749 1.007 6.477 2.834a9.103 9.103 0 012.634 6.475c-.003 5.167-4.227 9.39-9.391 9.39h-.024zM20.52 3.449C18.24 1.246 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 005.683 1.448h.005c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411z"/>
+          </svg>
+        </div>
+        <h2
+          class="font-bold uppercase tracking-wider mb-3"
+          style="font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 1.75rem); color: var(--color-text);"
+        >
+          Peça pelo WhatsApp
+        </h2>
+        <p class="mb-6 max-w-lg mx-auto" style="font-size: 1rem; color: var(--color-text-secondary); line-height: 1.625;">
+          O jeito mais rápido de fazer seu pedido. Clique e converse direto com a gente.
+        </p>
+        <a
+          href={WA_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 rounded-md font-semibold text-white uppercase tracking-wider text-sm"
+          style="background-color: #25D366; transition: filter var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-bounce);"
+          aria-label="Enviar mensagem pelo WhatsApp"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.85 1.787-1.164 2.336-.85.547.294 1.874 1.228 2.16.997.297-.148 1.04-.577 1.2-.964.123-.387.084-.712.042-.772-.042-.06-.148-.099-.347-.223zm-5.421 7.403h-.004a9.188 9.188 0 01-4.897-1.417l-.34-.203-3.541.93.946-3.46-.224-.357a9.19 9.19 0 01-1.41-4.908C2.665 7.04 6.89 2.816 12.051 2.816c2.448 0 4.749 1.007 6.477 2.834a9.103 9.103 0 012.634 6.475c-.003 5.167-4.227 9.39-9.391 9.39h-.024zM20.52 3.449C18.24 1.246 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 005.683 1.448h.005c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411z"/>
+          </svg>
+          (19) 99689-6714
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <ContactSection />
+  <Footer slot="footer" />
+</Layout>

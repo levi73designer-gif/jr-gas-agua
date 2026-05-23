@@ -1,0 +1,141 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Início' },
+  { href: '/produtos', label: 'Produtos' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/contato', label: 'Contato' },
+];
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-[10] border-b border-transparent transition-all duration-300"
+  style="background: linear-gradient(135deg, rgba(196,58,10,0.95) 0%, rgba(58,76,192,0.95) 100%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"
+>
+  <div class="flex items-center justify-between mx-auto" style="max-width: 80rem; padding: var(--space-4) var(--space-5);">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 min-h-[44px]" aria-label="JR Gás e Água — Página inicial">
+      <img
+        src="/images/JR-logo.png"
+        alt="JR Gás e Água"
+        width="40"
+        height="40"
+        style="height: 40px; width: auto; object-fit: contain;"
+      />
+      <span class="font-bold text-lg tracking-wide" style="font-family: var(--font-display); color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.04em;">
+        Gás e Água
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6" aria-label="Navegação principal">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="min-h-[44px] flex items-center transition-colors duration-100"
+          style={`font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; color: ${currentPath === link.href ? '#FFFFFF' : 'rgba(255,255,255,0.75)'};`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={`https://wa.me/5519996896714?text=${encodeURIComponent('Olá! Gostaria de fazer um pedido JR Gás e Água.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="min-h-[44px] flex items-center gap-2 px-6 py-3 rounded-md font-semibold uppercase tracking-wider text-sm"
+        style="background: #FFFFFF; color: #C43A0A; transition: filter var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);"
+        aria-label="Pedir via WhatsApp"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.85 1.787-1.164 2.336-.85.547.294 1.874 1.228 2.16.997.297-.148 1.04-.577 1.2-.964.123-.387.084-.712.042-.772-.042-.06-.148-.099-.347-.223zm-5.421 7.403h-.004a9.188 9.188 0 01-4.897-1.417l-.34-.203-3.541.93.946-3.46-.224-.357a9.19 9.19 0 01-1.41-4.908C2.665 7.04 6.89 2.816 12.051 2.816c2.448 0 4.749 1.007 6.477 2.834a9.103 9.103 0 012.634 6.475c-.003 5.167-4.227 9.39-9.391 9.39h-.024zM20.52 3.449C18.24 1.246 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 005.683 1.448h.005c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411z"/>
+        </svg>
+        Pedir
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex items-center justify-center min-h-[44px] min-w-[44px]"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu (outside header for proper rendering) -->
+<nav
+  id="mobile-menu"
+  class="mobile-menu md:hidden"
+  aria-label="Navegação mobile"
+  data_open="false"
+>
+  <a href="/" class="mobile-nav-link" style="color: rgba(255,255,255,0.8);">Início</a>
+  <a href="/produtos" class="mobile-nav-link" style="color: rgba(255,255,255,0.8);">Produtos</a>
+  <a href="/sobre" class="mobile-nav-link" style="color: rgba(255,255,255,0.8);">Sobre</a>
+  <a href="/contato" class="mobile-nav-link" style="color: rgba(255,255,255,0.8);">Contato</a>
+  <a
+    href={`https://wa.me/5519996896714?text=${encodeURIComponent('Olá! Gostaria de fazer um pedido JR Gás e Água.')}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="min-h-[44px] flex items-center gap-2 px-8 py-3 rounded-md font-semibold text-white uppercase tracking-wider"
+    style="background: linear-gradient(135deg, #C43A0A 0%, #E8621A 100%);"
+    aria-label="Pedir via WhatsApp"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.85 1.787-1.164 2.336-.85.547.294 1.874 1.228 2.16.997.297-.148 1.04-.577 1.2-.964.123-.387.084-.712.042-.772-.042-.06-.148-.099-.347-.223zm-5.421 7.403h-.004a9.188 9.188 0 01-4.897-1.417l-.34-.203-3.541.93.946-3.46-.224-.357a9.19 9.19 0 01-1.41-4.908C2.665 7.04 6.89 2.816 12.051 2.816c2.448 0 4.749 1.007 6.477 2.834a9.103 9.103 0 012.634 6.475c-.003 5.167-4.227 9.39-9.391 9.39h-.024zM20.52 3.449C18.24 1.246 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 005.683 1.448h.005c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411z"/>
+    </svg>
+    Pedir via WhatsApp
+  </a>
+</nav>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  const header = document.getElementById('main-header');
+
+  function toggleMenu() {
+    const isOpen = mobileMenu?.getAttribute('data_open') === 'true';
+    if (isOpen) {
+      mobileMenu?.setAttribute('data_open', 'false');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      document.body.style.overflow = '';
+    } else {
+      mobileMenu?.setAttribute('data_open', 'true');
+      menuBtn?.setAttribute('aria-expanded', 'true');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  menuBtn?.addEventListener('click', toggleMenu);
+
+  // Close menu on link click
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (mobileMenu.getAttribute('data_open') === 'true') {
+        toggleMenu();
+      }
+    });
+  });
+
+  // Header border on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header?.style.setProperty('border-bottom-color', 'rgba(255,255,255,0.15)');
+    } else {
+      header?.style.setProperty('border-bottom-color', 'transparent');
+    }
+  });
+</script>

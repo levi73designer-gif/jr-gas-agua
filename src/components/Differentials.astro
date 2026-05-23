@@ -1,0 +1,75 @@
+---
+const differentials = [
+  {
+    icon: 'clock',
+    title: 'Agilidade na Entrega',
+    description: 'Pediu, entregamos. Atendimento rápido em Santa Gertrudes e região.',
+  },
+  {
+    icon: 'shield',
+    title: 'Confiança e Segurança',
+    description: 'Produtos de qualidade e orientações de segurança com gás. Sua família merece cuidado.',
+  },
+  {
+    icon: 'map-pin',
+    title: 'Cobertura Local',
+    description: 'Santa Gertrudes com entrega garantida. Em breve: Rio Claro e Cordeirópolis.',
+  },
+  {
+    icon: 'credit-card',
+    title: 'Facilidade no Pagamento',
+    description: 'Dinheiro, PIX ou cartão. Você escolhe como pagar.',
+  },
+];
+
+const iconPaths: Record<string, string> = {
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  'map-pin': '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>',
+  'credit-card': '<rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>',
+};
+---
+
+<section class="section" style="background-color: var(--color-bg-elevated);">
+  <div class="section__container">
+    <h2
+      class="reveal font-bold uppercase tracking-wider text-center mb-3"
+      style="font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: 0.015em; color: var(--color-text);"
+    >
+      Por que escolher a JR?
+    </h2>
+    <p
+      class="reveal text-center mb-10 md:mb-12 max-w-2xl mx-auto"
+      style="color: var(--color-text-secondary); font-size: 1rem; line-height: 1.625;"
+    >
+      Mais de 10 anos entregando gás e água com compromisso e qualidade.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {differentials.map((item, i) => (
+        <div
+          class="reveal rounded-lg p-6 text-center"
+          style="background-color: var(--color-surface); border: 1px solid var(--color-border); transition: background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);"
+        >
+          <div
+            class="mx-auto mb-4 flex items-center justify-center rounded-full"
+            style="width: 48px; height: 48px; background: linear-gradient(135deg, rgba(196,58,10,0.15) 0%, rgba(58,76,192,0.15) 100%);"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-gas-light);" set:html={iconPaths[item.icon]} />
+          </div>
+          <h3
+            class="font-bold uppercase tracking-wider mb-2"
+            style="font-family: var(--font-display); font-size: 1rem; color: var(--color-text);"
+          >
+            {item.title}
+          </h3>
+          <p
+            style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.625;"
+          >
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,139 @@
+---
+const services = [
+  {
+    title: 'Gás',
+    description: 'Botijões P13, empilhadeira P20 e industrial P45. Entrega rápida em Santa Gertrudes e região.',
+    category: 'gas',
+    href: '/produtos#gas',
+    icon: 'flame',
+    ctaText: 'Ver gás',
+    image: '/images/gas-p13.webp',
+  },
+  {
+    title: 'Água',
+    description: 'Galões, fardos de garrafas e copos. Água mineral com e sem gás para toda necessidade.',
+    category: 'agua',
+    href: '/produtos#agua',
+    icon: 'droplets',
+    ctaText: 'Ver água',
+    image: '/images/agua-20l.webp',
+  },
+  {
+    title: 'Acessórios',
+    description: 'Kit gás, suportes em inox e bombas elétricas para galão. Tudo para sua comodidade.',
+    category: 'acessorio',
+    href: '/produtos#acessorio',
+    icon: 'wrench',
+    ctaText: 'Ver acessórios',
+    image: '/images/acessorio-suporte.webp',
+  },
+];
+
+const categoryColors: Record<string, { border: string; bg: string; text: string; hover: string; gradient: string; shadow: string }> = {
+  gas: {
+    border: 'var(--color-gas)',
+    bg: 'var(--color-gas-900)',
+    text: 'var(--color-gas-400)',
+    hover: 'var(--color-gas-800)',
+    gradient: 'linear-gradient(135deg, #C43A0A 0%, #E8621A 100%)',
+    shadow: 'var(--shadow-gas)',
+  },
+  agua: {
+    border: 'var(--color-water)',
+    bg: 'var(--color-water-900)',
+    text: 'var(--color-water-400)',
+    hover: 'var(--color-water-800)',
+    gradient: 'linear-gradient(135deg, #3A4CC0 0%, #5568D9 100%)',
+    shadow: 'var(--shadow-water)',
+  },
+  acessorio: {
+    border: 'var(--color-text-muted)',
+    bg: 'var(--color-surface-hover)',
+    text: 'var(--color-text-secondary)',
+    hover: 'var(--color-surface)',
+    gradient: 'none',
+    shadow: 'var(--shadow-md)',
+  },
+};
+---
+
+<section class="section" style="background-color: var(--color-bg);">
+  <div class="section__container">
+    <h2
+      class="reveal font-bold uppercase tracking-wider text-center mb-3"
+      style="font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: 0.015em; color: var(--color-text);"
+    >
+      O que entregamos
+    </h2>
+    <p
+      class="reveal text-center mb-10 md:mb-12 max-w-2xl mx-auto"
+      style="color: var(--color-text-secondary); font-size: 1rem; line-height: 1.625;"
+    >
+      De botijões de gás a galões de água mineral, temos tudo para sua casa ou empresa.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      {services.map((service, i) => {
+        const colors = categoryColors[service.category];
+        return (
+          <a
+            href={service.href}
+            class="reveal group relative block rounded-lg p-6 md:p-8 transition-all duration-200 min-h-[44px] overflow-hidden"
+            style={`background-color: var(--color-surface); border: 1px solid var(--color-border); transition: background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);`}
+            aria-label={`Ver produtos de ${service.title}`}
+          >
+            {/* Background image with reduced opacity */}
+            <div
+              class="service-card-bg absolute inset-0 bg-cover bg-center"
+              style={`background-image: url('${service.image}'); opacity: 0.08; transition: opacity var(--duration-fast) var(--ease-out);`}
+              aria-hidden="true"
+            ></div>
+            {/* Content above background */}
+            <div class="relative z-10">
+            {/* Icon */}
+            <div class="mb-4" style={`width: 40px; height: 40px;`}>
+              {service.icon === 'flame' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={colors.text} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6 2 1.1 2 2.5 2 4a2 2 0 01-2 2 8 8 0 01-8-8z"/></svg>
+              )}
+              {service.icon === 'droplets' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={colors.text} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 14.69c1.64 0 2.97-1.37 2.97-3.02 0-.87-.42-1.68-1.27-2.38-.85-.7-1.49-1.52-1.7-2.59-.22 1.08-.85 1.9-1.7 2.59-.85.7-1.27 1.51-1.27 2.38 0 1.65 1.33 3.02 2.97 3.02z"/></svg>
+              )}
+              {service.icon === 'wrench' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={colors.text} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              )}
+            </div>
+
+            <h3
+              class="font-bold uppercase tracking-wider mb-3"
+              style="font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text);"
+            >
+              {service.title}
+            </h3>
+
+            <p
+              class="mb-6"
+              style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.625;"
+            >
+              {service.description}
+            </p>
+
+            <span
+              class="inline-flex items-center gap-1 font-semibold uppercase tracking-wider text-xs"
+              style={`color: ${colors.text}; transition: color var(--duration-instant) var(--ease-out);`}
+            >
+              {service.ctaText}
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+            </div>{/* end z-10 content */}
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  a:hover .service-card-bg {
+    opacity: 0.15;
+  }
+</style>

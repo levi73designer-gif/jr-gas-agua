@@ -1,0 +1,119 @@
+[
+  {
+    "id": "gas-p13",
+    "name": "Gás de Cozinha P13",
+    "category": "gas",
+    "categoryLabel": "Gás",
+    "description": "Para o dia a dia da sua casa. O botijão mais comum, entrega rápida.",
+    "whatsappMessage": "Olá! Gostaria de pedir Gás de Cozinha P13.",
+    "image": "/images/gas-p13.webp"
+  },
+  {
+    "id": "gas-p20",
+    "name": "Gás de Empilhadeira P20",
+    "category": "gas",
+    "categoryLabel": "Gás",
+    "description": "Para indústrias e logística. Santa Gertrudes é polo industrial, entregamos onde você precisa.",
+    "whatsappMessage": "Olá! Gostaria de pedir Gás de Empilhadeira P20.",
+    "image": "/images/gas-p20.webp"
+  },
+  {
+    "id": "gas-p45",
+    "name": "Gás Industrial P45",
+    "category": "gas",
+    "categoryLabel": "Gás",
+    "description": "Para operações de grande porte. Volume e agilidade para sua empresa.",
+    "whatsappMessage": "Olá! Gostaria de pedir Gás Industrial P45.",
+    "image": "/images/gas-p45.webp"
+  },
+  {
+    "id": "agua-10l",
+    "name": "Galão 10L",
+    "category": "agua",
+    "categoryLabel": "Água",
+    "description": "Praticidade em menor volume. Ideal para quem consome menos.",
+    "whatsappMessage": "Olá! Gostaria de pedir Galão 10L.",
+    "image": "/images/agua-10l.webp"
+  },
+  {
+    "id": "agua-20l",
+    "name": "Galão 20L",
+    "category": "agua",
+    "categoryLabel": "Água",
+    "description": "O mais pedido. Água mineral pura para sua casa ou escritório.",
+    "whatsappMessage": "Olá! Gostaria de pedir Galão 20L.",
+    "image": "/images/agua-20l.webp"
+  },
+  {
+    "id": "agua-fardo-15l",
+    "name": "Fardo 1,5L",
+    "category": "agua",
+    "categoryLabel": "Água",
+    "description": "Água mineral sem gás em garrafas de 1,5L. Fardo com múltiplas unidades.",
+    "whatsappMessage": "Olá! Gostaria de pedir Fardo de garrafas 1,5L.",
+    "image": "/images/agua-fardo-15l.webp"
+  },
+  {
+    "id": "agua-fardo-510-sem",
+    "name": "Fardo 510ml",
+    "category": "agua",
+    "categoryLabel": "Água",
+    "description": "Prático para levar na bolsa ou no carro. Sem gás.",
+    "whatsappMessage": "Olá! Gostaria de pedir Fardo de garrafas 510ml.",
+    "image": "/images/agua-fardo-510-sem.webp"
+  },
+  {
+    "id": "agua-fardo-510-com",
+    "name": "Fardo 510ml com Gás",
+    "category": "agua",
+    "categoryLabel": "Água",
+    "description": "Água com gás para quem gosta de efervescência.",
+    "whatsappMessage": "Olá! Gostaria de pedir Fardo de garrafas 510ml com gás.",
+    "image": "/images/agua-fardo-510-com.webp"
+  },
+  {
+    "id": "agua-5l",
+    "name": "Galão 5L (Descartável)",
+    "category": "agua",
+    "categoryLabel": "Água",
+    "description": "Leve e prático. Perfeito para eventos e uso temporário.",
+    "whatsappMessage": "Olá! Gostaria de pedir Galão 5L Descartável.",
+    "image": "/images/agua-5l.webp"
+  },
+  {
+    "id": "agua-copos-200",
+    "name": "Caixa de Copo (48 un. 200ml)",
+    "category": "agua",
+    "categoryLabel": "Água",
+    "description": "Para escritórios, eventos e reuniões. Prático e econômico.",
+    "whatsappMessage": "Olá! Gostaria de pedir Caixa de Copos 200ml.",
+    "image": "/images/agua-copos-200.webp"
+  },
+  {
+    "id": "acessorio-kit-gas",
+    "name": "Kit Gás",
+    "category": "acessorio",
+    "categoryLabel": "Acessórios",
+    "description": "Tudo que você precisa para instalar seu botijão com segurança.",
+    "whatsappMessage": "Olá! Gostaria de pedir Kit Gás.",
+    "image": "/images/acessorio-kit-gas.webp"
+  },
+  {
+    "id": "acessorio-suporte",
+    "name": "Suporte para Galão em Inox",
+    "category": "acessorio",
+    "categoryLabel": "Acessórios",
+    "description": "Elegância e durabilidade para seu galão 20L ou 10L.",
+    "whatsappMessage": "Olá! Gostaria de pedir Suporte para Galão em Inox.",
+    "image": "/images/acessorio-suporte.webp"
+  },
+  {
+    "id": "acessorio-bomba",
+    "name": "Bomba Elétrica para Galão",
+    "category": "acessorio",
+    "categoryLabel": "Acessórios",
+    "description": "Praticidade no dia a dia. Instale e use com um toque.",
+    "whatsappMessage": "Olá! Gostaria de pedir Bomba Elétrica para Galão.",
+    "image": "/images/acessorio-bomba.webp"
+  }
+]

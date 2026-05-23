@@ -1,0 +1,103 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = 'JR Gás e Água — Distribuindo mais que produtos, distribuímos qualidade! Entrega de gás e água mineral em Santa Gertrudes - SP.', ogImage = '/og-image.jpg' } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://jrgasagua.com.br');
+
+const WA_NUMBER = '5519996896714';
+const WA_MESSAGE = encodeURIComponent('Olá! Gostaria de fazer um pedido JR Gás e Água.');
+const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.toString()} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="JR Gás e Água — Distribuindo mais que produtos, distribuímos qualidade!" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Global Styles -->
+    <style is:global>
+      @import "../styles/global.css";
+    </style>
+  </head>
+  <body class="min-h-screen" style="background-color: var(--color-bg); color: var(--color-text);">
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+    <slot name="header" />
+
+    <main id="conteudo">
+      <slot />
+    </main>
+
+    <slot name="footer" />
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href={WA_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Pedir via WhatsApp"
+      class="whatsapp-pulse fixed bottom-6 right-5 z-[50] flex items-center justify-center rounded-full shadow-lg hover:scale-110 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#25D366]"
+      style="width: 56px; height: 56px; background-color: #25D366; box-shadow: var(--shadow-whatsapp); transition: transform var(--duration-fast) var(--ease-bounce), filter var(--duration-fast) var(--ease-out);"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.85 1.787-1.164 2.336-.85.547.294 1.874 1.228 2.16.997.297-.148 1.04-.577 1.2-.964.123-.387.084-.712.042-.772-.042-.06-.148-.099-.347-.223zm-5.421 7.403h-.004a9.188 9.188 0 01-4.897-1.417l-.34-.203-3.541.93.946-3.46-.224-.357a9.19 9.19 0 01-1.41-4.908C2.665 7.04 6.89 2.816 12.051 2.816c2.448 0 4.749 1.007 6.477 2.834a9.103 9.103 0 012.634 6.475c-.003 5.167-4.227 9.39-9.391 9.39h-.024zM20.52 3.449C18.24 1.246 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 005.683 1.448h.005c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411z"/>
+      </svg>
+    </a>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal');
+        if (revealElements.length === 0) return;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>

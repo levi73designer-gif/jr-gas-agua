@@ -1,0 +1,127 @@
+---
+const faqs = [
+  {
+    question: 'Qual a área de cobertura da JR Gás e Água?',
+    answer: 'Entregamos em Santa Gertrudes - SP. Em breve, estaremos também em Rio Claro e Cordeirópolis!',
+  },
+  {
+    question: 'Quais as formas de pagamento?',
+    answer: 'Aceitamos dinheiro, PIX e cartão (crédito e débito). Você escolhe como pagar na hora da entrega.',
+  },
+  {
+    question: 'Qual o horário de atendimento?',
+    answer: 'Segunda a sexta, das 7h às 21h. Sábados, das 8h às 20h. Domingos, das 8h às 15h.',
+  },
+  {
+    question: 'Como faço um pedido?',
+    answer: 'É simples: clique no botão de WhatsApp do produto desejado ou entre em contato pelo (19) 99689-6714. Recebemos seu pedido e entregamos rápido!',
+  },
+  {
+    question: 'Vocês entregam gás para empilhadeira?',
+    answer: 'Sim! O gás P20 para empilhadeiras é um dos nossos diferenciais. Santa Gertrudes é polo industrial e entendemos a urgência desse tipo de entrega.',
+  },
+  {
+    question: 'Os preços estão no site?',
+    answer: 'Os preços podem variar e são informados diretamente pelo WhatsApp. Entre em contato para consultar o valor atualizado de qualquer produto.',
+  },
+];
+---
+
+<section class="section" style="background-color: var(--color-bg);">
+  <div class="section__container max-w-3xl">
+    <h2
+      class="reveal font-bold uppercase tracking-wider text-center mb-3"
+      style="font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: 0.015em; color: var(--color-text);"
+    >
+      Perguntas frequentes
+    </h2>
+    <p
+      class="reveal text-center mb-10 md:mb-12"
+      style="color: var(--color-text-secondary); font-size: 1rem; line-height: 1.625;"
+    >
+      Tire suas dúvidas sobre entrega, pagamento e atendimento.
+    </p>
+
+    <div class="space-y-3">
+      {faqs.map((faq, i) => (
+        <div
+          class="faq-item reveal rounded-md"
+          data_open={i === 0 ? 'true' : 'false'}
+          style={`background-color: var(--color-surface); border: 1px solid var(--color-border); transition: background-color var(--duration-fast) var(--ease-out);`}
+        >
+          <button
+            type="button"
+            class="w-full flex items-center justify-between text-left min-h-[44px]"
+            style={`padding: var(--space-4) var(--space-5); font-family: var(--font-body); font-size: 1rem; font-weight: 500; color: var(--color-text);`}
+            aria-expanded={i === 0 ? 'true' : 'false'}
+            aria-controls={`faq-answer-${i}`}
+          >
+            <span>{faq.question}</span>
+            <svg
+              class={`faq-chevron shrink-0 ml-4 ${i === 0 ? 'rotate-180' : ''}`}
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="color: var(--color-text-muted); transition: transform var(--duration-fast) var(--ease-out);"
+            >
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div
+            id={`faq-answer-${i}`}
+            class="faq-content"
+            role="region"
+            style={`padding: ${i === 0 ? '0 var(--space-5) var(--space-5)' : '0 var(--space-5)'};`}
+          >
+            <p style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.625;">
+              {faq.answer}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach((item) => {
+    const button = item.querySelector('button');
+    const content = item.querySelector('.faq-content');
+    const chevron = item.querySelector('.faq-chevron');
+
+    button?.addEventListener('click', () => {
+      const isOpen = item.getAttribute('data_open') === 'true';
+
+      // Close all items
+      faqItems.forEach((otherItem) => {
+        otherItem.setAttribute('data_open', 'false');
+        const otherBtn = otherItem.querySelector('button');
+        const otherContent = otherItem.querySelector('.faq-content') as HTMLElement | null;
+        const otherChevron = otherItem.querySelector('.faq-chevron') as HTMLElement | null;
+        otherBtn?.setAttribute('aria-expanded', 'false');
+        if (otherContent) {
+          otherContent.style.padding = '0 var(--space-5)';
+        }
+        otherChevron?.classList.remove('rotate-180');
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        item.setAttribute('data_open', 'true');
+        button.setAttribute('aria-expanded', 'true');
+        if (content) {
+          content.style.padding = '0 var(--space-5) var(--space-5)';
+        }
+        chevron?.classList.add('rotate-180');
+      }
+    });
+  });
+</script>

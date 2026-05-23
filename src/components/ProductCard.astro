@@ -1,0 +1,198 @@
+---
+interface Props {
+  id: string;
+  name: string;
+  category: string;
+  categoryLabel: string;
+  description: string;
+  whatsappMessage: string;
+  image?: string;
+}
+
+const { id, name, category, categoryLabel, description, whatsappMessage, image = '' } = Astro.props;
+
+const WA_NUMBER = '5519996896714';
+const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+
+const categoryConfig: Record<string, {
+  borderColor: string;
+  badgeBg: string;
+  badgeColor: string;
+  badgeBorder: string;
+  ctaBg: string;
+  ctaColor: string;
+  ctaBorder: string;
+  placeholderGradient: string;
+  placeholderIconColor: string;
+  hoverShadow: string;
+}> = {
+  gas: {
+    borderColor: 'var(--color-gas)',
+    badgeBg: 'var(--color-gas-900)',
+    badgeColor: 'var(--color-gas-400)',
+    badgeBorder: 'var(--color-gas-700)',
+    ctaBg: 'var(--color-gas-900)',
+    ctaColor: 'var(--color-gas-400)',
+    ctaBorder: 'var(--color-gas-700)',
+    placeholderGradient: 'linear-gradient(135deg, #FFF3ED 0%, #FFDCC4 100%)',
+    placeholderIconColor: '#C43A0A',
+    hoverShadow: '0 8px 32px rgba(196,58,10,0.2)',
+  },
+  agua: {
+    borderColor: 'var(--color-water)',
+    badgeBg: 'var(--color-water-900)',
+    badgeColor: 'var(--color-water-400)',
+    badgeBorder: 'var(--color-water-700)',
+    ctaBg: 'var(--color-water-900)',
+    ctaColor: 'var(--color-water-400)',
+    ctaBorder: 'var(--color-water-700)',
+    placeholderGradient: 'linear-gradient(135deg, #EBEDF8 0%, #C8CDE8 100%)',
+    placeholderIconColor: '#3A4CC0',
+    hoverShadow: '0 8px 32px rgba(58,76,192,0.2)',
+  },
+  acessorio: {
+    borderColor: 'var(--color-text-muted)',
+    badgeBg: 'var(--color-surface-hover)',
+    badgeColor: 'var(--color-text-secondary)',
+    badgeBorder: 'var(--color-border-strong)',
+    ctaBg: 'var(--color-surface-hover)',
+    ctaColor: 'var(--color-text-secondary)',
+    ctaBorder: 'var(--color-border-strong)',
+    placeholderGradient: 'linear-gradient(135deg, #F8F7F4 0%, #E5E3DF 100%)',
+    placeholderIconColor: '#555555',
+    hoverShadow: '0 8px 32px rgba(0,0,0,0.1)',
+  },
+};
+
+const config = categoryConfig[category] || categoryConfig.acessorio;
+---
+
+<article
+  class="card-3d-container product-card-visible"
+  data-category={category}
+>
+  <div
+    class="card-3d-body rounded-xl"
+    style={`background-color: var(--color-surface); border: 1px solid var(--color-border); border-left: 3px solid ${config.borderColor}; --card-hover-shadow: ${config.hoverShadow};`}
+  >
+    <!-- Image / Placeholder -->
+    <div class="card-3d-item overflow-hidden rounded-t-xl" style="--item-z: 60px;">
+      {image ? (
+        <img
+          src={image}
+          alt={name}
+          loading="lazy"
+          class="w-full h-40 md:h-48 object-cover"
+        />
+      ) : (
+        <div
+          class="flex items-center justify-center h-40 md:h-48"
+          style={`background: ${config.placeholderGradient};`}
+        >
+          {category === 'gas' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill={config.placeholderIconColor} opacity="0.35" aria-hidden="true">
+              <path d="M12 2C6.5 7 4 10 4 13.5a8 8 0 0016 0C20 10 17.5 7 12 2zm0 18a3.5 3.5 0 01-3.5-3.5c0-2 1.5-4 3.5-6 2 2 3.5 4 3.5 6A3.5 3.5 0 0112 20z"/>
+            </svg>
+          )}
+          {category === 'agua' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill={config.placeholderIconColor} opacity="0.35" aria-hidden="true">
+              <path d="M12 2C12 2 5 9 5 14a7 7 0 0014 0c0-5-7-12-7-12z"/>
+            </svg>
+          )}
+          {category === 'acessorio' && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={config.placeholderIconColor} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" aria-hidden="true">
+              <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.53 7.53l-6.15 6.15a2 2 0 01-2.83-2.83l6.15-6.15a6 6 0 017.53-7.53l-3.76 3.76z"/>
+            </svg>
+          )}
+        </div>
+      )}
+    </div>
+
+    <!-- Content -->
+    <div class="p-5">
+      <!-- Title + Badge -->
+      <div class="card-3d-item" style="--item-z: 40px;">
+        <div class="flex items-start justify-between gap-3 mb-3">
+          <h4
+            class="font-bold uppercase tracking-wider"
+            style="font-family: var(--font-display); font-size: 1.125rem; color: var(--color-text);"
+          >
+            {name}
+          </h4>
+          <span
+            class="shrink-0 inline-block rounded-full px-3 py-1 uppercase tracking-widest text-xs font-semibold"
+            style={`background-color: ${config.badgeBg}; color: ${config.badgeColor}; border: 1px solid ${config.badgeBorder}; font-size: 0.6875rem; letter-spacing: 0.08em;`}
+          >
+            {categoryLabel}
+          </span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="card-3d-item" style="--item-z: 25px;">
+        <p
+          class="mb-5"
+          style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.625; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"
+        >
+          {description}
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="card-3d-item" style="--item-z: 15px;">
+        <a
+          href={WA_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-md font-semibold uppercase tracking-wider text-xs"
+          style={`background-color: ${config.ctaBg}; color: ${config.ctaColor}; border: 1px solid ${config.ctaBorder}; transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);`}
+          aria-label={`Pedir ${name} via WhatsApp`}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.85 1.787-1.164 2.336-.85.547.294 1.874 1.228 2.16.997.297-.148 1.04-.577 1.2-.964.123-.387.084-.712.042-.772-.042-.06-.148-.099-.347-.223zm-5.421 7.403h-.004a9.188 9.188 0 01-4.897-1.417l-.34-.203-3.541.93.946-3.46-.224-.357a9.19 9.19 0 01-1.41-4.908C2.665 7.04 6.89 2.816 12.051 2.816c2.448 0 4.749 1.007 6.477 2.834a9.103 9.103 0 012.634 6.475c-.003 5.167-4.227 9.39-9.391 9.39h-.024zM20.52 3.449C18.24 1.246 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 005.683 1.448h.005c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411z"/>
+          </svg>
+          Pedir via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<script>
+  function init3DCards() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const containers = document.querySelectorAll('.card-3d-container:not([data-3d])');
+
+    containers.forEach((container) => {
+      const body = container.querySelector('.card-3d-body') as HTMLElement;
+      if (!body) return;
+
+      container.setAttribute('data-3d', '');
+      const maxRotation = 8;
+
+      container.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -maxRotation;
+        const rotateY = ((x - centerX) / centerX) * maxRotation;
+
+        body.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      container.addEventListener('mouseleave', () => {
+        body.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    });
+  }
+
+  if (window.matchMedia('(hover: hover)').matches) {
+    init3DCards();
+    document.addEventListener('astro:page-load', init3DCards);
+  }
+</script>

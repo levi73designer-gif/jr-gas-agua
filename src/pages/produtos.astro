@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CatalogFilters from '../components/CatalogFilters.astro';
+import ProductCard from '../components/ProductCard.astro';
+import ContactSection from '../components/ContactSection.astro';
+import products from '../data/products.json';
+---
+
+<Layout title="Produtos — JR Gás e Água" description="Catálogo de gás, água mineral e acessórios. Peça pelo WhatsApp com entrega rápida em Santa Gertrudes.">
+  <Header slot="header" />
+
+  <!-- Products Hero -->
+  <section class="section" style="background-color: var(--color-bg); padding-top: calc(var(--space-12) + 4.5rem);">
+    <div class="section__container">
+      <div class="reveal">
+        <!-- Accent bar -->
+        <div
+          class="mb-6"
+          style="width: 80px; height: 4px; background: linear-gradient(135deg, #C43A0A 0%, #3A4CC0 100%); border-radius: 2px;"
+          aria-hidden="true"
+        ></div>
+
+        <h1
+          class="font-black uppercase tracking-wider leading-none mb-4"
+          style="font-family: var(--font-display); font-size: clamp(1.75rem, 5vw, 3rem); color: var(--color-text);"
+        >
+          Nossos Produtos
+        </h1>
+        <p
+          class="max-w-2xl"
+          style="font-family: var(--font-body); font-size: 1rem; font-weight: 400; color: var(--color-text-secondary); line-height: 1.625;"
+        >
+          Gás de cozinha, água mineral e acessórios. Escolha o que precisa e peça direto pelo WhatsApp.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <section class="section" style="background-color: var(--color-bg); padding-top: 0;">
+    <div class="section__container">
+      <CatalogFilters />
+
+      <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        {products.map((product) => (
+          <ProductCard
+            id={product.id}
+            name={product.name}
+            category={product.category}
+            categoryLabel={product.categoryLabel}
+            description={product.description}
+            whatsappMessage={product.whatsappMessage}
+            image={product.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactSection />
+  <Footer slot="footer" />
+</Layout>

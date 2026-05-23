@@ -1,0 +1,489 @@
+@import "tailwindcss";
+
+/* ============================================
+   JR Gás e Água — Design Tokens (Tailwind v4)
+   ============================================ */
+
+@theme {
+  /* --- Gas Scale --- */
+  --color-gas-50: #FFF3ED;
+  --color-gas-100: #FFDCC4;
+  --color-gas-200: #FFB580;
+  --color-gas-300: #FF8E3C;
+  --color-gas-400: #E8621A;
+  --color-gas-500: #C43A0A;
+  --color-gas-600: #A02E08;
+  --color-gas-700: #7A2206;
+  --color-gas-800: #551804;
+  --color-gas-900: #3A1003;
+  --color-gas: #C43A0A;
+  --color-gas-light: #E8621A;
+  --color-gas-glow: #FF7A2E;
+
+  /* --- Water Scale --- */
+  --color-water-50: #EBEDF8;
+  --color-water-100: #C8CDE8;
+  --color-water-200: #9AA3D5;
+  --color-water-300: #7482C8;
+  --color-water-400: #5568D9;
+  --color-water-500: #3A4CC0;
+  --color-water-600: #2E3DA0;
+  --color-water-700: #232E80;
+  --color-water-800: #1A2260;
+  --color-water-900: #111740;
+  --color-water: #3A4CC0;
+  --color-water-light: #5568D9;
+  --color-water-glow: #7084F0;
+
+  /* --- Neutrals (Light Mode) --- */
+  --color-bg: #F8F7F4;
+  --color-bg-elevated: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F0EFEC;
+  --color-border: #E5E3DF;
+  --color-border-strong: #C9C7C3;
+  --color-text: #1A1A1A;
+  --color-text-secondary: #555555;
+  --color-text-muted: #999999;
+  --color-text-inverse: #FFFFFF;
+
+  /* --- Semantic --- */
+  --color-success: #16A34A;
+  --color-success-surface: #F0FDF4;
+  --color-error: #DC2626;
+  --color-error-surface: #FEF2F2;
+  --color-warning: #F59E0B;
+  --color-warning-surface: #FFFBEB;
+  --color-info: #3B82F6;
+  --color-info-surface: #EFF6FF;
+
+  /* --- WhatsApp --- */
+  --color-whatsapp: #25D366;
+
+  /* --- Typography --- */
+  --font-display: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* --- Spacing (scale base 4px) --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* --- Border Radius --- */
+  --radius-none: 0;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --shadow-gas: 0 4px 20px rgba(196,58,10,0.15);
+  --shadow-water: 0 4px 20px rgba(58,76,192,0.15);
+  --shadow-whatsapp: 0 4px 24px rgba(37,211,102,0.3);
+
+  /* --- Transitions --- */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* --- Z-index --- */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-dropdown: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-whatsapp: 50;
+  --z-toast: 60;
+
+  /* --- Breakpoints --- */
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1440px;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: var(--leading-normal, 1.5);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: var(--leading-tight, 1.1);
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--font-h1-mobile, 1.75rem);
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: var(--font-h2-mobile, 1.5rem);
+  letter-spacing: 0.015em;
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: var(--font-h3-mobile, 1.25rem);
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+
+h4 {
+  font-size: var(--font-h4-mobile, 1.125rem);
+  letter-spacing: 0.005em;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.375rem; }
+  h4 { font-size: 1.125rem; }
+}
+
+@media (min-width: 1024px) {
+  h1 { font-size: 2.75rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+}
+
+@media (min-width: 1440px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+}
+
+a {
+  color: var(--color-text-secondary);
+  transition: color var(--duration-instant) var(--ease-out);
+}
+
+a:hover {
+  color: var(--color-gas-light);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   Skip Link
+   ============================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  background: var(--color-gas);
+  color: var(--color-text);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  z-index: 100;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* ============================================
+   Scroll Reveal
+   ============================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================
+   WhatsApp Pulse Animation
+   ============================================ */
+
+@keyframes pulse-whatsapp {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.whatsapp-pulse {
+  animation: pulse-whatsapp 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-pulse {
+    animation: none;
+  }
+}
+
+/* ============================================
+   Focus Visible
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-gas-glow);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Section Spacing
+   ============================================ */
+
+.section {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+.section__container {
+  max-width: 80rem;
+  margin-inline: auto;
+}
+
+/* ============================================
+   Accent Bar (Fusion Gradient)
+   ============================================ */
+
+.accent-bar {
+  height: 3px;
+  background: linear-gradient(135deg, #C43A0A 0%, #3A4CC0 100%);
+}
+
+/* ============================================
+   Catalog Filter Animations
+   ============================================ */
+
+.product-card-filtered {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.product-card-visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  position: relative;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+/* ============================================
+   FAQ Accordion
+   ============================================ */
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-normal) var(--ease-out),
+              padding var(--duration-normal) var(--ease-out);
+}
+
+.faq-item[data-open="true"] .faq-content {
+  max-height: 20rem;
+}
+
+.faq-item[data_open="true"] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-chevron {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.faq-item[data_open="true"] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   Mobile Menu
+   ============================================ */
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-6);
+  transform: translateX(100%);
+  transition: transform var(--duration-normal) var(--ease-out);
+  padding: var(--space-8) var(--space-5);
+}
+
+.mobile-menu[data_open="true"] {
+  transform: translateX(0);
+}
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.8);
+  padding: var(--space-3) var(--space-5);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 280px;
+  justify-content: center;
+  text-align: center;
+  transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:focus {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   3D Card Effect
+   ============================================ */
+
+.card-3d-container {
+  perspective: 1000px;
+}
+
+.card-3d-body {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.card-3d-item {
+  transform: translateZ(var(--item-z, 0px));
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .card-3d-container:hover .card-3d-body {
+    box-shadow: var(--card-hover-shadow, var(--shadow-lg));
+  }
+}
+
+@media (hover: none) {
+  .card-3d-container {
+    perspective: none;
+  }
+
+  .card-3d-body {
+    transform: none !important;
+    transform-style: flat;
+    transition: box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  }
+
+  .card-3d-body:active {
+    transform: scale(0.98);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-3d-item {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-3d-container {
+    perspective: none;
+  }
+
+  .card-3d-body {
+    transform: none !important;
+    transform-style: flat;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .card-3d-item {
+    transform: none;
+    transition: none;
+  }
+}
